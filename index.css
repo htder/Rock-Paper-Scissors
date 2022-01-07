@@ -1,0 +1,96 @@
+.scores,
+.player,
+.computer,
+.choice-container,
+.computer-choice-container,
+.start-container,
+.result-container,
+.button-container,
+.again-container,
+.instruction {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 42px;
+  margin: 20px 0;
+  border: 1px solid black;
+  padding: 20px 0;
+}
+
+div.player,
+div.computer {
+  margin: 10px;
+  font-size: 28px;
+  flex-direction: column-reverse;
+  align-items: center;
+  width: 25%;
+  padding: 25px 0 25px 0;
+}
+
+.player-score,
+.computer-score {
+  border: 1px solid black;
+  padding: 30px;
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.button-container {
+  padding: 10px;
+
+  width: 15%;
+}
+
+.button {
+  border: 1px solid black;
+  padding: 25px;
+}
+
+.start {
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.start:hover {
+  background-color: grey;
+}
+.result-container {
+  text-transform: uppercase;
+  padding: 15px;
+  display: none;
+}
+
+.result-container-show {
+  text-transform: uppercase;
+  padding: 15px;
+}
+
+.computer-choice-container p {
+  padding: 5px;
+}
+
+.chosen {
+  border: 3px solid red;
+}
+
+.again-container {
+  display: none;
+}
+
+.again {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.bof {
+  font-size: 1.2em;
+}
+
+.instruction {
+  display: flex;
+}

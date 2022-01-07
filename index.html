@@ -2,9 +2,53 @@
 <html>
   <head>
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <h1>Rock Paper Scissors</h1>
+    <div class="result-container">
+      <div class="result">you win</div>
+    </div>
+    <div class="instruction">
+      <div class="bof">First to 5, wins!</div>
+    </div>
+    <div class="again-container">
+      <div class="again">Play Again?</div>
+    </div>
+    <!-- Scores -->
+    <div class="scores">
+      <div class="player">
+        <div>Player</div>
+        <div class="player-score">0</div>
+      </div>
+      <div class="computer">
+        <div>Computer</div>
+        <div class="computer-score">0</div>
+      </div>
+    </div>
+
+    <!-- Choices -->
+    <div class="choice-container">
+      <div class="button-container">
+        <div class="button rock">Rock</div>
+      </div>
+      <div class="button-container">
+        <div class="button paper">Paper</div>
+      </div>
+      <div class="button-container">
+        <div class="button scissors">Scissors</div>
+      </div>
+    </div>
+
+    <div class="start-container">
+      <div class="start">Go</div>
+    </div>
+
+    <!-- Computer Choice-->
+    <div class="computer-choice-container">
+      <p>The Computer Chose:</p>
+    </div>
   </body>
   <script src="./index.js"></script>
 </html>

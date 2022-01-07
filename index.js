@@ -1,3 +1,64 @@
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
+const choices = document.querySelectorAll(".button");
+const goButton = document.querySelector(".start");
+const computer = document.querySelector(".computer-choice-container p");
+const result = document.querySelector(".result");
+const buttonContainer = document.querySelector(".start-container");
+const resultContainer = document.querySelector(".result-container");
+const againContainer = document.querySelector(".again-container");
+const instructionContainer = document.querySelector(".instruction");
+
+const score = {
+  you: 0,
+  computer: 0,
+};
+
+againContainer.addEventListener("click", function (e) {
+  buttonContainer.appendChild(goButton);
+  instructionContainer.setAttribute("style", "display: flex");
+  resultContainer.setAttribute("style", "display: none;");
+  againContainer.setAttribute("style", "display: none;");
+  score.you = 0;
+  score.computer = 0;
+  playerScore.textContent = score.you;
+  computerScore.textContent = score.computer;
+});
+
+choices.forEach((button) =>
+  button.addEventListener("click", function (e) {
+    choices.forEach((button) => button.classList.remove("chosen"));
+    e.target.classList.add("chosen");
+  })
+);
+
+goButton.addEventListener("click", function (e) {
+  const userChoiceArr = Array.from(choices).filter((button) =>
+    button.classList.contains("chosen")
+  );
+  if (userChoiceArr[0] === undefined) return;
+  const userChoice = userChoiceArr[0].textContent;
+  const computerChoice = computerPlay();
+  const hasUserWon = winner(userChoice, computerChoice);
+  computer.textContent = `The computer chose: ${computerChoice}`;
+
+  if (hasUserWon) {
+    playerScore.textContent = ++score.you;
+  } else {
+    computerScore.textContent = ++score.computer;
+  }
+  choices.forEach((button) => button.classList.remove("chosen"));
+  if (score.you === 5 || score.computer === 5) {
+    const resultString = score.you === 5 ? "WINNER!" : "You Lost!";
+    result.textContent = resultString;
+    resultContainer.setAttribute("style", "display: flex;");
+    againContainer.setAttribute("style", "display: flex;");
+    resultContainer.classList.add("result-container-show");
+    goButton.remove();
+    instructionContainer.setAttribute("style", "display: none");
+  }
+});
+
 // computerPlay() - randomly return either "rock", "paper" or "scissors".
 function computerPlay() {
   // initialise array of choices
@@ -18,8 +79,8 @@ function userPlay() {
   return lowerInput.replace(lowerInput[0], lowerInput[0].toUpperCase());
 }
 
-// play() - takes the users guess (playerSelection) and the computers guess (computerSelection) and returns who has won e.g. "You Lose! Paper beats Rock".
-function play(playerSelection, computerSelection) {
+// play() - takes the users guess (playerSelection) and the computers guess (computerSelection) and returns who has won. True for player winning or drawing and false for player losing.
+function winner(playerSelection, computerSelection) {
   // Paper beats rock
   // Rock beats scissors
   // Scissors beats paper
@@ -53,41 +114,3 @@ function play(playerSelection, computerSelection) {
     }
   }
 }
-
-// game() - plays five rounds of rock paper scissors, keeping score of who has won each round, then reports a winner or loser at the end.
-
-function game() {
-  // initialise score variables
-  let playerScore = 0;
-  let computerScore = 0;
-
-  // start loop
-  for (let i = 0; i < 5; i++) {
-    // get user input and computer input
-    let userInput = userPlay();
-    let computerInput = computerPlay();
-    // print winner
-    let userWinner = play(userInput, computerInput);
-    if (userWinner) {
-      console.log(`You Win! ${userInput} beats ${computerInput}`);
-    } else {
-      console.log(`You Lose! ${computerInput} beats ${userInput}`);
-    }
-    // change score variables
-    userWinner === true ? playerScore++ : computerScore++;
-  }
-  console.log(playerScore, computerScore);
-
-  // print who has won the game
-  if (playerScore > computerScore) {
-    console.log(
-      `You beat the computer! Score [${playerScore} : ${computerScore}]`
-    );
-  } else {
-    console.log(
-      `The computer beat you! Score [${playerScore} : ${computerScore}]`
-    );
-  }
-}
-
-game();
